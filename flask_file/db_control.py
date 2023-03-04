@@ -2,7 +2,7 @@ import datetime
 from deta import Deta
 
 def get_db():
-    db = Deta(project_key="c0h15t2h_R5jA9bTpwsmwSTnZoXgA1p9uHrSFGAEV")
+    db = Deta(project_key="c0h15t2h_LsJsyUoSd4n3heSzCaC2S82twuCv1wrV")
     db = db.Base(name="flask_file")
     return db
 
@@ -26,6 +26,8 @@ def show_db():
     posts = posts.copy()
 
     posts = sort(posts)
+    # データ確認用
+    #[print(i) for i in posts]
 
     return posts
 

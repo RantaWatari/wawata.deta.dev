@@ -3,7 +3,9 @@
 
 <section>
     <div class="con">
-    <a href="/">HOME/</a>
+        <div class="home-button">
+            <a href="/">HOME</a>
+        </div>
     {% if select == "insert"%}
         <strong>INSERT</strong> 
         <form action="/" method="post">
@@ -26,13 +28,13 @@
         <strong>DELETE</strong>
         <form action="/" method="post">
             <ul type="None">
-            {% for post in posts%}
-                <li>
-                    <input type="checkbox" id="{{post['key']}}" name="delete_id" value="{{post['key']}}">
-                    <label class="button" for="{{post['key']}}">{{post['text']}}</label>
-                </li>
-            {% endfor %}
-            </ul>
+                {% for post in posts%}
+                    <li>
+                        <input type="checkbox" id="{{post['key']}}" name="delete_id" value="{{post['key']}}">
+                        <label class="button" for="{{post['key']}}">{{post['text']}}</label>
+                    </li>
+                {% endfor %}
+                </ul>
             <input type="hidden" name="sql_cmd" value="delete">
             <input class="button" type="submit" value="DELETE">
         </form>
@@ -46,11 +48,19 @@
     {% endif %}
 
     <ul type="None">
-    <strong class="title">##STORED DATE##</strong>
-    {% for post in posts%}
-        <li>{{post["time"][0]}}/{{post["time"][1]}}/{{post["time"][2]}} {{post["time"][3]}}:{{post["time"][4]}}:{{post["time"][5]}} | {{post["text"]}}</li>
-    {% endfor %}
-    </ul>
+        <h6>LOG : {{log_text}} | {{now_time[0]}}/{{now_time[1]}}/{{now_time[2]}} {{now_time[3]}}:{{now_time[4]}}:{{now_time[5]}}</h6>
+            {% if logs == None %}
+                <h6>-----</h6>
+            {% else %}
+                {% for log in logs%}
+                    <h6>{{log["time"][0]}}/{{log["time"][1]}}/{{log["time"][2]}} {{log["time"][3]}}:{{log["time"][4]}}:{{log["time"][5]}} | {{log["text"]}}</h6>
+                {% endfor %}  
+            {% endif %}
+            <strong class="title">##STORED DATE##</strong>
+        {% for post in posts%}
+            <li>{{post["time"][0]}}/{{post["time"][1]}}/{{post["time"][2]}} {{post["time"][3]}}:{{post["time"][4]}}:{{post["time"][5]}} | {{post["text"]}}</li>
+        {% endfor %}
+        </ul>
     </div>
 </section>
 {% endblock %}

@@ -1,0 +1,10 @@
+# Spacefile Docs: https://go.deta.dev/docs/spacefile/v0
+v: 0
+micros:
+  - name: flask_file
+    src: .
+    engine: python3.9
+    primary: True
+    public_routes:
+      - "/"
+      - "/static/*"
